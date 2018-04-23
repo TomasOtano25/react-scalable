@@ -1,0 +1,9 @@
+.appBar {
+  width: 100%;
+  padding: 15px;
+  background-color: #00afcc;
+  color: #fff;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
