@@ -1,7 +1,7 @@
 //import { delay } from "redux-saga";
 import types from "../../actions/actionType";
 import axios from "axios";
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest, select } from "redux-saga/effects";
 import { requestTopicsSucceded, requestTopicsFailed } from "./actions";
 import { logException } from "../../tracking/configureSentry";
 import { push } from "react-router-redux";
@@ -27,8 +27,24 @@ function* fetchTopics() {
 }
 
 function* pushTopic(action) {
+  //yield sessionStorage.setItem("selectedTopic", action.topic.name);
   yield put(push(`/topics/${action.topic.name}`));
-  //  console.log(push(`topics/${action.topic.name}`));
+}
+
+function* selectDefaultTopic() {
+  let redirectRoute;
+  const state = yield select();
+  console.log(state);
+
+  /*if (sessionStorage.getItem("selectedTopic") !== null) {
+    redirectRoute = sessionStorage.getItem("selectedTopic");
+  } else {*/
+  redirectRoute = state.topics[0].name;
+  //}
+
+  if (Object.keys(state.selected).length === 0) {
+    yield put(push(`/topics/${redirectRoute}`));
+  }
 }
 
 export function* fetchTopicsSaga() {
@@ -39,7 +55,11 @@ export function* selectTopicsSaga() {
   yield takeLatest(types.SELECT_TOPIC, pushTopic);
 }
 
-export default [fetchTopicsSaga, selectTopicsSaga];
+export function* selectDefaultTopicSaga() {
+  yield takeLatest(types.REQUEST_TOPICS_SUCCEDED, selectDefaultTopic);
+}
+
+export default [fetchTopicsSaga, selectTopicsSaga, selectDefaultTopicSaga];
 
 /*export function* mySaga() {
   yield takeLatest(types.REQUEST_TOPICS, () => {

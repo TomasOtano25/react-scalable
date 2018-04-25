@@ -2,15 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import Link from "../common/Link";
 
-const LinkList = ({ links, routeTopicName }) => {
-  let topic = null;
+const LinkList = ({ links, topicName }) => {
   const linkNodes = links.map(l => {
-    topic = l.topicName;
     return <Link key={l.id} link={l} />;
   });
   return (
     <div>
-      <h1>{topic}</h1>
+      <h1>{topicName}</h1>
       <div>{linkNodes}</div>
     </div>
   );

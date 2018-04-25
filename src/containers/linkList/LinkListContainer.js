@@ -3,31 +3,55 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import LinkList from "../../components/linkList/LinkList";
-import { requestLink } from "./actions";
+import { requestLinks } from "./actions";
 
 export class LinkListContainer extends Component {
-  static propTypes = {};
+  static propTypes = {
+    topicName: PropTypes.string.isRequired,
+    requestLinks: PropTypes.func.isRequired
+  };
 
   state = {};
 
+  componentDidMount() {
+    this.props.requestLinks(this.props.topicName);
+  }
+
   componentWillReceiveProps(nextProps) {
-    //this.props.requestLink(this.props.routeTopicName);
+    if (this.props.topicName !== nextProps.topicName) {
+      this.props.requestLinks(nextProps.topicName);
+      console.log(nextProps.topicName);
+    }
   }
 
   render() {
-    console.log(this.props.routeTopicName);
+    //console.log(this.props.routeTopicName);
     return <LinkList {...this.props} />;
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  links: state.links,
-  selectTopics: [],
-  routeTopicName: ownProps.match.params.topicName
-});
+const mapStateToProps = (state, ownProps) => {
+  const selectTopics = () => {
+    const selectedTopic = state.topics.find(
+      t => t.name === ownProps.match.params.topicName
+    );
+
+    return (
+      selectedTopic || {
+        name: ""
+      }
+    );
+  };
+
+  return {
+    links: state.links,
+    topicName: selectTopics().name
+    /* selectTopic: ,ownProps.match.params.topicName*/
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  requestLink: topicName => dispatch(requestLink(topicName))
+  requestLinks: topicName => dispatch(requestLinks(topicName))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LinkListContainer);

@@ -7,11 +7,11 @@ import {
 } from "../../containers/linkList/actions";
 import { logException } from "../../tracking/configureSentry";
 
-const fetchLinksFromServer = topic => {
+const fetchLinksFromServer = topicName => {
   return new Promise((resolve, reject) => {
     return axios
       .get(
-        `http://5adab961ba92a2001425c92e.mockapi.io/api/v1/links?search=${topic}`
+        `http://5adab961ba92a2001425c92e.mockapi.io/api/v1/links?search=${topicName}`
       )
       .then(response => (response.status !== 200 ? reject(response) : response))
       .then(response => response.data)
@@ -22,7 +22,7 @@ const fetchLinksFromServer = topic => {
 
 export function* fetchLinks(action) {
   try {
-    console.log(action.topicName);
+    //console.log(action.topicName);
     const links = yield call(fetchLinksFromServer, action.topicName);
     yield put(requestLinkSucceded(links));
   } catch (error) {
