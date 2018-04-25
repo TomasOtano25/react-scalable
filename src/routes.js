@@ -1,14 +1,22 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Route, Switch } from "react-router";
 
 import HomeContainer from "./containers/home/HomeContainer";
+
+import LinkListContainer from "./containers/linkList/LinkListContainer";
 
 const Routes = () => {
   return (
     <Switch>
-      <Route exact to="/" component={HomeContainer} />
-      <Route component={HomeContainer} />
+      <Route exact path="/" component={HomeContainer} />
+      <Route exact path="*" component={HomeContainer} />
     </Switch>
+  );
+};
+
+export const RoutesHome = () => {
+  return (
+    <Route exact path="/topics/:topicName" component={LinkListContainer} />
   );
 };
 

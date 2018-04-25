@@ -1,16 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
+import LinkListContainer from "../../containers/linkList/LinkListContainer";
+import AppBar from "../../components/appBar/AppBar";
+import Navigation from "../navigation/Natigation";
+import { RoutesHome } from "../../routes";
 
-const HomaPage = ({ topics, selectTopic }) => {
-  const topicNodes = topics.map(t => (
-    <div key={t.id} onClick={() => selectTopic(t)}>
-      {t.name}
+const HomaPage = props => {
+  return (
+    <div>
+      <AppBar {...props} />
+      <Navigation {...props} />
+      <RoutesHome />
+      {/*<LinkListContainer />*/}
     </div>
-  ));
-  return <div>{topicNodes}</div>;
+  );
 };
 
 HomaPage.propTypes = {
+  toogleDrawer: PropTypes.func.isRequired,
   topics: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

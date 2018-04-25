@@ -6,6 +6,8 @@
     "@material-ui/icons": "^1.0.0-beta.43",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
+    "classnames": "^2.2.5",
+    "history": "^4.7.2",
     "immutable": "^3.8.2",
     "material-ui": "^1.0.0-beta.43",
     "object-assign": "4.1.1",
@@ -14,8 +16,9 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-router-redux": "^4.0.8",
+    "react-router-redux": "^5.0.0-alpha.9",
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0",
     "regenerator-runtime": "^0.11.1",
@@ -23,6 +26,7 @@
     "styled-components": "^3.2.6"
   },
   "devDependencies": {
+    "@storybook/react": "^3.4.2",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
@@ -60,12 +64,17 @@
     "webpack": "3.8.1",
     "webpack-dev-server": "2.9.4",
     "webpack-manifest-plugin": "1.3.2",
-    "whatwg-fetch": "2.0.3"
+    "whatwg-fetch": "2.0.3",
+    "@storybook/addon-actions": "^3.4.2",
+    "@storybook/addon-links": "^3.4.2",
+    "@storybook/addons": "^3.4.2"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "jest": {
     "collectCoverageFrom": [

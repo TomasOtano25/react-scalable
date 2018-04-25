@@ -1,10 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import AppBar from "material-ui/AppBar";
 import Toolbar from "material-ui/Toolbar";
 import IconButton from "material-ui/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import Typography from "material-ui/Typography";
 import Button from "material-ui/Button";
 
 import styled from "styled-components";
@@ -16,6 +16,7 @@ const Title = styled.h1`
 
 const SectionTitle = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const TextButton = styled.span`
@@ -30,18 +31,25 @@ const link = {
   textDecoration: "none"
 };
 
-const BarApp = () => {
+const appBar = {
+  backgroundColor: "#00afcc"
+};
+
+const BarApp = ({ toogleDrawer }) => {
   return (
     <div>
-      <AppBar position="static">
+      <AppBar position="static" style={appBar}>
         <Toolbar style={content}>
           <SectionTitle>
-            <IconButton color="inherit" aria-label="Menu">
+            <IconButton
+              color="inherit"
+              aria-label="Menu"
+              onClick={toogleDrawer}
+            >
               <MenuIcon />
             </IconButton>
-            <Typography color="inherit">
-              <Title>Code daily</Title>
-            </Typography>
+
+            <Title>Code daily</Title>
           </SectionTitle>
 
           <Button>
@@ -53,6 +61,10 @@ const BarApp = () => {
       </AppBar>
     </div>
   );
+};
+
+BarApp.prototype = {
+  toogleDrawer: PropTypes.func.isRequired
 };
 
 export default BarApp;

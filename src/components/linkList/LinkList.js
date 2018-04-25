@@ -1,19 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Link from "../common/Link";
 
-const LinkList = ({ links }) => {
-  const linkNodes = links.map(l => (
-    <section key={l.id}>
-      <h1>{l.topicName}</h1>
-      <div>
-        {l.url} - {l.description}
-      </div>
-    </section>
-  ));
-  return <div>{linkNodes}</div>;
+const LinkList = ({ links, routeTopicName }) => {
+  let topic = null;
+  const linkNodes = links.map(l => {
+    topic = l.topicName;
+    return <Link key={l.id} link={l} />;
+  });
+  return (
+    <div>
+      <h1>{topic}</h1>
+      <div>{linkNodes}</div>
+    </div>
+  );
 };
 
-/*LinkList.propTypes = {
+LinkList.propTypes = {
   links: PropTypes.arrayOf(
     PropTypes.shape({
       description: PropTypes.string.isRequired,
@@ -21,6 +24,6 @@ const LinkList = ({ links }) => {
       id: PropTypes.string.isRequired
     })
   )
-};*/
+};
 
 export default LinkList;

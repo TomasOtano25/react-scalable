@@ -4,9 +4,6 @@ import initialState from "../../reducers/initialState";
 const topicReducer = (state = initialState.topics, action) => {
   switch (action.type) {
     case types.REQUEST_TOPICS_SUCCEDED:
-      //return state.merge(Map(action.topics));
-      //return state.setIn(["topics"], action.topics);
-      //state.set("topics", action.topics);
       return action.topics;
     default:
       return state;
@@ -14,7 +11,6 @@ const topicReducer = (state = initialState.topics, action) => {
 };
 
 const selectTopic = (state = initialState.selectedTopic, action) => {
-  //console.log(action);
   switch (action.type) {
     case types.SELECT_TOPIC:
       return Object.assign({}, state, action.topic);
@@ -23,4 +19,13 @@ const selectTopic = (state = initialState.selectedTopic, action) => {
   }
 };
 
-export { topicReducer, selectTopic };
+const toogleDrawer = (state = initialState.toogleDrawer, action) => {
+  switch (action.type) {
+    case types.TOOGLE_DRAWER:
+      return !state;
+    default:
+      return state;
+  }
+};
+
+export { topicReducer, selectTopic, toogleDrawer };

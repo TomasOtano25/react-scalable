@@ -2,11 +2,12 @@ import "babel-polyfill";
 import "regenerator-runtime/runtime";
 import React from "react";
 import ReactDOM from "react-dom";
+import { ConnectedRouter } from "react-router-redux";
 
 import Raven from "raven-js";
 import { sentry_url } from "./tracking/configureSentry";
 
-import configureStore from "./store/configureStore";
+import configureStore, { history } from "./store/configureStore";
 import { Provider } from "react-redux";
 //import { loadTopics } from "./containers/home/action";
 
@@ -23,7 +24,9 @@ const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
   </Provider>,
   document.getElementById("root")
 );

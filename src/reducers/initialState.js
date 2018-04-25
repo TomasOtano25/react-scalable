@@ -7,5 +7,6 @@ import { fromJS } from "immutable";
 export default {
   topics: [],
   selectedTopic: {},
-  links: []
+  links: [],
+  toogleDrawer: false
 };

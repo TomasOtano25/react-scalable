@@ -4,6 +4,7 @@ import axios from "axios";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { requestTopicsSucceded, requestTopicsFailed } from "./actions";
 import { logException } from "../../tracking/configureSentry";
+import { push } from "react-router-redux";
 
 const fetchTopicsFromServer = () =>
   new Promise((resolve, reject) => {
@@ -15,7 +16,7 @@ const fetchTopicsFromServer = () =>
       .catch(error => reject(error));
   });
 
-export function* fetchTopics() {
+function* fetchTopics() {
   try {
     const topics = yield call(fetchTopicsFromServer);
     yield put(requestTopicsSucceded(topics));
@@ -25,9 +26,20 @@ export function* fetchTopics() {
   }
 }
 
-export function* mySaga() {
+function* pushTopic(action) {
+  yield put(push(`/topics/${action.topic.name}`));
+  //  console.log(push(`topics/${action.topic.name}`));
+}
+
+export function* fetchTopicsSaga() {
   yield takeLatest(types.REQUEST_TOPICS, fetchTopics);
 }
+
+export function* selectTopicsSaga() {
+  yield takeLatest(types.SELECT_TOPIC, pushTopic);
+}
+
+export default [fetchTopicsSaga, selectTopicsSaga];
 
 /*export function* mySaga() {
   yield takeLatest(types.REQUEST_TOPICS, () => {

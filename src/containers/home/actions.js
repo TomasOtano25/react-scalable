@@ -15,3 +15,7 @@ export const requestTopicsFailed = message => {
 export const selectTopic = topic => {
   return { type: types.SELECT_TOPIC, topic };
 };
+
+export const toogleDrawer = () => {
+  return { type: types.TOOGLE_DRAWER };
+};

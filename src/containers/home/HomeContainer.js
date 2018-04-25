@@ -1,29 +1,36 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { requestTopics, selectTopic } from "./actions";
-import { getTopics } from "./selectors";
+import { requestTopics, selectTopic, toogleDrawer } from "./actions";
 import HomePage from "../../components/home/HomePage";
-import LinkListContainer from "../../containers/linkList/LinkListContainer";
 
 class CoursesPage extends Component {
   static propTypes = {
     requestTopics: PropTypes.func.isRequired
   };
 
-  state = {};
+  state = {
+    isDrawerOpen: this.props.isDrawerOpen
+  };
 
   componentDidMount() {
     this.props.requestTopics();
-    console.log(this.props.topics);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.isDrawerOpen === nextProps.isDrawerOpen) {
+      return;
+    }
+
+    this.setState({
+      isDrawerOpen: nextProps.isDrawerOpen
+    });
   }
 
   render() {
-    console.log(this.props.topics);
     return (
       <div>
-        <HomePage {...this.props} />
-        <LinkListContainer />
+        <HomePage {...this.props} stateDrawerOpen={this.state.isDrawerOpen} />
       </div>
     );
   }
@@ -31,14 +38,16 @@ class CoursesPage extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    topics: state.topics
+    topics: state.topics,
+    isDrawerOpen: state.isDrawerOpen
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     requestTopics: () => dispatch(requestTopics()),
-    selectTopic: topic => dispatch(selectTopic(topic))
+    selectTopic: topic => dispatch(selectTopic(topic)),
+    toogleDrawer: () => dispatch(toogleDrawer())
   };
 };
 

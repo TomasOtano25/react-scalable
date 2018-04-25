@@ -11,9 +11,7 @@ const fetchLinksFromServer = topic => {
   return new Promise((resolve, reject) => {
     return axios
       .get(
-        `http://5adab961ba92a2001425c92e.mockapi.io/api/v1/links?search=${
-          topic.name
-        }`
+        `http://5adab961ba92a2001425c92e.mockapi.io/api/v1/links?search=${topic}`
       )
       .then(response => (response.status !== 200 ? reject(response) : response))
       .then(response => response.data)
@@ -24,7 +22,8 @@ const fetchLinksFromServer = topic => {
 
 export function* fetchLinks(action) {
   try {
-    const links = yield call(fetchLinksFromServer, action.topic);
+    console.log(action.topicName);
+    const links = yield call(fetchLinksFromServer, action.topicName);
     yield put(requestLinkSucceded(links));
   } catch (error) {
     logException(error.message, error);
@@ -33,5 +32,5 @@ export function* fetchLinks(action) {
 }
 
 export default function*() {
-  yield takeLatest(types.SELECT_TOPIC, fetchLinks);
+  yield takeLatest(types.REQUEST_LINKS, fetchLinks);
 }
