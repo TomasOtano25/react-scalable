@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { withStyles } from "material-ui/styles";
-import { InputLabel, InputAdornment } from "material-ui/Input";
+import { InputAdornment } from "material-ui/Input";
 import TextField from "material-ui/TextField";
 import Button from "material-ui/Button";
 import EmailIcon from "@material-ui/icons/Email";
 import LoginBackground from "../../loginBackground.jpeg";
+import classNames from "classnames";
 
 const Background = styled.div`
   display: flex;
@@ -57,7 +59,14 @@ const styles = () => ({
   }
 });
 
-const LoginPage = ({ classes }) => {
+const LoginPage = ({
+  classes,
+  login,
+  updateInput,
+  loginForm,
+  errors,
+  cancelLogin
+}) => {
   return (
     <Background>
       <Registrer>
@@ -79,12 +88,16 @@ const LoginPage = ({ classes }) => {
           </Button>
         </LoginButtons>
         <span>OR</span>
-        <form action="">
+        <form noValidate>
           <Input>
             <TextField
+              error={errors.email ? true : false}
+              name="email"
+              value={loginForm.email}
+              onChange={event => updateInput(event)}
               className={classes.input}
-              type="text"
               label="Email"
+              helperText={errors.email ? errors.email : ""}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -94,8 +107,22 @@ const LoginPage = ({ classes }) => {
               }}
             />
           </Input>
-          <Button variant="raised" color="primary" className={classes.button}>
+          {/*errors.email !== null && <span>{errors.email}</span>*/}
+          <Button
+            variant="raised"
+            color="primary"
+            className={classes.button}
+            onClick={login}
+          >
             Log In
+          </Button>
+          <Button
+            variant="raised"
+            color="default"
+            className={classes.button}
+            onClick={cancelLogin}
+          >
+            Cancelar
           </Button>
         </form>
       </Registrer>
@@ -103,6 +130,8 @@ const LoginPage = ({ classes }) => {
   );
 };
 
-LoginPage.proptypes = {};
+LoginPage.proptypes = {
+  cancelLogin: PropTypes.func.isRequired
+};
 
 export default withStyles(styles)(LoginPage);

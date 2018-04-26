@@ -35,7 +35,7 @@ const appBar = {
   backgroundColor: "#00afcc"
 };
 
-const BarApp = ({ toogleDrawer }) => {
+const BarApp = ({ toogleDrawer, email }) => {
   return (
     <div>
       <AppBar position="static" style={appBar}>
@@ -51,11 +51,15 @@ const BarApp = ({ toogleDrawer }) => {
 
             <Title>Code daily</Title>
           </SectionTitle>
-          <Link to="/login" style={link}>
-            <Button>
-              <TextButton>Log in</TextButton>
-            </Button>
-          </Link>
+          {email === "" ? (
+            <Link to="/login" style={link}>
+              <Button>
+                <TextButton>Log in</TextButton>
+              </Button>{" "}
+            </Link>
+          ) : (
+            email
+          )}
         </Toolbar>
       </AppBar>
     </div>
@@ -63,7 +67,8 @@ const BarApp = ({ toogleDrawer }) => {
 };
 
 BarApp.prototype = {
-  toogleDrawer: PropTypes.func.isRequired
+  toogleDrawer: PropTypes.func.isRequired,
+  email: PropTypes.string
 };
 
 export default BarApp;

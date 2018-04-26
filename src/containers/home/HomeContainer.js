@@ -39,7 +39,8 @@ class CoursesPage extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     topics: state.topics,
-    isDrawerOpen: state.isDrawerOpen
+    isDrawerOpen: state.isDrawerOpen,
+    email: state.login
   };
 };
 

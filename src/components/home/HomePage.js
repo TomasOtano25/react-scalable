@@ -17,6 +17,7 @@ const HomaPage = props => {
 };
 
 HomaPage.propTypes = {
+  email: PropTypes.string,
   toogleDrawer: PropTypes.func.isRequired,
   topics: PropTypes.arrayOf(
     PropTypes.shape({

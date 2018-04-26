@@ -9,5 +9,6 @@ export default {
   selectedTopic: {},
   links: [],
   toogleDrawer: false,
-  routerLocation: ""
+  routerLocation: "",
+  login: ""
 };

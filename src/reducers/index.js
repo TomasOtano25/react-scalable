@@ -10,7 +10,16 @@ import {
 
 import { linkListContainetReducer as links } from "../containers/linkList/reducer";
 
-const reducers = { topics, selected, links, isDrawerOpen, routerLocation };
+import { loginReducer as login } from "../containers/login/reducer";
+
+const reducers = {
+  topics,
+  selected,
+  links,
+  isDrawerOpen,
+  routerLocation,
+  login
+};
 
 const rootReducer = combineReducers({
   ...reducers,
