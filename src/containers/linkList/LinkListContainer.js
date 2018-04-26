@@ -46,7 +46,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     links: state.links,
     topicName: selectTopics().name
-    /* selectTopic: ,ownProps.match.params.topicName*/
   };
 };
 

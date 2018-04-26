@@ -27,23 +27,15 @@ function* fetchTopics() {
 }
 
 function* pushTopic(action) {
-  //yield sessionStorage.setItem("selectedTopic", action.topic.name);
   yield put(push(`/topics/${action.topic.name}`));
 }
 
 function* selectDefaultTopic() {
-  let redirectRoute;
   const state = yield select();
-  console.log(state);
+  console.log(sessionStorage.getItem("selectedTopic"));
 
-  /*if (sessionStorage.getItem("selectedTopic") !== null) {
-    redirectRoute = sessionStorage.getItem("selectedTopic");
-  } else {*/
-  redirectRoute = state.topics[0].name;
-  //}
-
-  if (Object.keys(state.selected).length === 0) {
-    yield put(push(`/topics/${redirectRoute}`));
+  if (state.routerLocation === "/") {
+    yield put(push(`/topics/${state.topics[0].name}`));
   }
 }
 

@@ -51,12 +51,11 @@ const BarApp = ({ toogleDrawer }) => {
 
             <Title>Code daily</Title>
           </SectionTitle>
-
-          <Button>
-            <Link to="/login" style={link}>
+          <Link to="/login" style={link}>
+            <Button>
               <TextButton>Log in</TextButton>
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>

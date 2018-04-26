@@ -8,5 +8,6 @@ export default {
   topics: [],
   selectedTopic: {},
   links: [],
-  toogleDrawer: false
+  toogleDrawer: false,
+  routerLocation: ""
 };

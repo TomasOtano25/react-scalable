@@ -28,4 +28,14 @@ const toogleDrawer = (state = initialState.toogleDrawer, action) => {
   }
 };
 
-export { topicReducer, selectTopic, toogleDrawer };
+const routerLocation = (state = initialState.routerLocation, action) => {
+  switch (action.type) {
+    case "@@router/LOCATION_CHANGE":
+      return action.payload.pathname;
+
+    default:
+      return state;
+  }
+};
+
+export { topicReducer, selectTopic, toogleDrawer, routerLocation };
