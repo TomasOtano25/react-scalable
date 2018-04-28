@@ -1,7 +1,7 @@
 import types from "../../actions/actionType";
 
-export const cancelAdd = () => {
-  return { type: types.CANCEL_ADD };
+export const addLinkCancelled = () => {
+  return { type: types.ADD_LINK_CANCELLED };
 };
 
 export const addLink = link => {
@@ -11,10 +11,10 @@ export const addLink = link => {
   };
 };
 
-export const addLinkSuccess = () => {
-  return { type: types.ADD_LINK_SUCCESS };
+export const addLinkSuccess = link => {
+  return { type: types.ADD_LINK_SUCCESS, link };
 };
 
-export const addLinkFailed = () => {
-  return { type: types.ADD_LINK_FAILED };
+export const addLinkFailed = (link, message) => {
+  return { type: types.ADD_LINK_FAILED, link, message };
 };

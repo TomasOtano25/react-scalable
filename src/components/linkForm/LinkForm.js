@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import TextInput from "../common/TextInput";
 import Overlay from "../common/Overlay";
@@ -19,7 +20,13 @@ const SectionButtons = styled.div`
   justify-content: flex-end;
 `;
 
-const LinkForm = ({ errors, addForm, updateInput, onAdd, cancelAdd }) => {
+const LinkForm = ({
+  errors,
+  addForm,
+  updateInput,
+  onAdd,
+  addLinkCancelled
+}) => {
   return (
     <Overlay>
       <Form>
@@ -46,7 +53,7 @@ const LinkForm = ({ errors, addForm, updateInput, onAdd, cancelAdd }) => {
           <DescriptionIcon />
         </TextInput>
         <SectionButtons>
-          <Button color="secondary" onClick={cancelAdd}>
+          <Button color="secondary" onClick={addLinkCancelled}>
             Cancel
           </Button>
           <Button color="secondary" variant="raised" onClick={onAdd}>
@@ -56,6 +63,14 @@ const LinkForm = ({ errors, addForm, updateInput, onAdd, cancelAdd }) => {
       </Form>
     </Overlay>
   );
+};
+
+LinkForm.proptypes = {
+  errors: PropTypes.object.isRequired,
+  addForm: PropTypes.object.isRequired,
+  updateInput: PropTypes.func.isRequired,
+  onAdd: PropTypes.func.isRequired,
+  addLinkCancelled: PropTypes.func.isRequired
 };
 
 export default LinkForm;

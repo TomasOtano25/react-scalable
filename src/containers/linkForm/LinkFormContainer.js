@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import validator from "validator";
 import LinkForm from "../../components/linkForm/LinkForm";
-import { cancelAdd, addLink } from "./actions";
+import { addLinkCancelled, addLink } from "./actions";
 
 export class LinkFormContainer extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ export class LinkFormContainer extends Component {
   }
 
   static propTypes = {
-    cancelAdd: PropTypes.func.isRequired,
+    addLinkCancelled: PropTypes.func.isRequired,
     addLink: PropTypes.func.isRequired,
     topicName: PropTypes.string.isRequired
   };
@@ -87,7 +87,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  cancelAdd: () => dispatch(cancelAdd()),
+  addLinkCancelled: () => dispatch(addLinkCancelled()),
   addLink: link => dispatch(addLink(link))
 });
 
