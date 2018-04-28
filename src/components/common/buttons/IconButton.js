@@ -2,7 +2,7 @@ import React from "react";
 import IconButton from "material-ui/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 
-const ButtonIcon = () => {
+const IconButtonComponent = () => {
   return (
     <div>
       <IconButton>
@@ -12,4 +12,4 @@ const ButtonIcon = () => {
   );
 };
 
-export default ButtonIcon;
+export default IconButtonComponent;

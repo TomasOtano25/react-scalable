@@ -9,28 +9,16 @@ class CoursesPage extends Component {
     requestTopics: PropTypes.func.isRequired
   };
 
-  state = {
-    isDrawerOpen: this.props.isDrawerOpen
-  };
+  state = {};
 
   componentDidMount() {
     this.props.requestTopics();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.state.isDrawerOpen === nextProps.isDrawerOpen) {
-      return;
-    }
-
-    this.setState({
-      isDrawerOpen: nextProps.isDrawerOpen
-    });
-  }
-
   render() {
     return (
       <div>
-        <HomePage {...this.props} stateDrawerOpen={this.state.isDrawerOpen} />
+        <HomePage {...this.props} />
       </div>
     );
   }

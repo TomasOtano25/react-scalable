@@ -9,7 +9,8 @@ const actionTypes = {
   TOOGLE_DRAWER: "TOOGLE_DRAWER",
   LOGIN: "LOGIN",
   CANCEL_LOGIN: "CANCEL_LOGIN",
-  START_ADD: "START_ADD"
+  START_ADD: "START_ADD",
+  CANCEL_ADD: "CANCEL_ADD"
 };
 
 export default actionTypes;

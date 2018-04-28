@@ -24,8 +24,7 @@ const DrawerComponent = ({
   topics,
   selectTopic,
   isDrawerOpen,
-  toogleDrawer,
-  stateDrawerOpen
+  toogleDrawer
 }) => {
   const theme = true;
   const topicNode = topics.map(topic => (
@@ -48,7 +47,7 @@ const DrawerComponent = ({
       >*/
   return (
     <div>
-      <Drawer open={stateDrawerOpen} onClose={toogleDrawer}>
+      <Drawer open={isDrawerOpen} onClose={toogleDrawer}>
         <DrawerDiv>
           <IconDiv>
             <IconButton onClick={toogleDrawer}>

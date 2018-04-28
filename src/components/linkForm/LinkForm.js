@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import TextInput from "../common/TextInput";
 import Overlay from "../common/Overlay";
+import Button from "../common/buttons/Button";
 import LinkIcon from "@material-ui/icons/Link";
 import DescriptionIcon from "@material-ui/icons/Description";
 
@@ -13,7 +14,12 @@ const Form = styled.div`
   flex: 0.1 0 0px;
 `;
 
-const LinkForm = ({ errors, addForm, updateInput }) => {
+const SectionButtons = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const LinkForm = ({ errors, addForm, updateInput, cancelAdd }) => {
   return (
     <Overlay>
       <Form>
@@ -39,6 +45,14 @@ const LinkForm = ({ errors, addForm, updateInput }) => {
         >
           <DescriptionIcon />
         </TextInput>
+        <SectionButtons>
+          <Button color="secondary" onClick={cancelAdd}>
+            Cancel
+          </Button>
+          <Button color="secondary" variant="raised">
+            Add
+          </Button>
+        </SectionButtons>
       </Form>
     </Overlay>
   );
