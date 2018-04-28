@@ -19,7 +19,7 @@ const SectionButtons = styled.div`
   justify-content: flex-end;
 `;
 
-const LinkForm = ({ errors, addForm, updateInput, cancelAdd }) => {
+const LinkForm = ({ errors, addForm, updateInput, onAdd, cancelAdd }) => {
   return (
     <Overlay>
       <Form>
@@ -49,7 +49,7 @@ const LinkForm = ({ errors, addForm, updateInput, cancelAdd }) => {
           <Button color="secondary" onClick={cancelAdd}>
             Cancel
           </Button>
-          <Button color="secondary" variant="raised">
+          <Button color="secondary" variant="raised" onClick={onAdd}>
             Add
           </Button>
         </SectionButtons>

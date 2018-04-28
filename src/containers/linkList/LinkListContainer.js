@@ -57,8 +57,6 @@ const mapStateToProps = (state, ownProps) => {
     );
   };
 
-  console.log(ownProps);
-
   return {
     links: state.links,
     topicName: selectTopics().name

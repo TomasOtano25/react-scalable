@@ -1,30 +1,34 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import validator from "validator";
 import LinkForm from "../../components/linkForm/LinkForm";
-import { cancelAdd } from "./actions";
+import { cancelAdd, addLink } from "./actions";
 
 export class LinkFormContainer extends Component {
   constructor(props) {
     super(props);
 
     this.updateInput = this.updateInput.bind(this);
-    this.addLink = this.addLink.bind(this);
+    this.onAdd = this.onAdd.bind(this);
   }
+
+  static propTypes = {
+    cancelAdd: PropTypes.func.isRequired,
+    addLink: PropTypes.func.isRequired,
+    topicName: PropTypes.string.isRequired
+  };
 
   state = {
     addForm: {
       url: "",
-      description: ""
+      description: "",
+      topicName: ""
     },
     errors: {
       url: "",
       description: ""
     }
-  };
-
-  static propTypes = {
-    cancelAdd: PropTypes.func.isRequired
   };
 
   updateInput(event) {
@@ -36,14 +40,39 @@ export class LinkFormContainer extends Component {
     });
   }
 
-  addLink() {}
+  onAdd() {
+    const { addForm } = this.state;
+    let error = {};
+    if (!validator.isURL(addForm.url, { require_protocol: true })) {
+      error.url = "Please provide valid URL";
+    }
+    if (addForm.description === "") {
+      error.description = "Please provide valid description";
+    }
+
+    this.setState({
+      errors: error
+    });
+
+    if (error.url || error.description) {
+      return;
+    }
+
+    let state = this.state.addForm;
+    state["topicName"] = this.props.topicName;
+    this.setState({
+      addForm: state
+    });
+
+    this.props.addLink(this.state.addForm);
+  }
 
   render() {
     return (
       <div>
         <LinkForm
           {...this.props}
-          addLink={this.addLink}
+          onAdd={this.onAdd}
           updateInput={this.updateInput}
           addForm={this.state.addForm}
           errors={this.state.errors}
@@ -53,10 +82,13 @@ export class LinkFormContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = (state, ownProps) => ({
+  topicName: ownProps.match.params.topicName
+});
 
 const mapDispatchToProps = dispatch => ({
-  cancelAdd: () => dispatch(cancelAdd())
+  cancelAdd: () => dispatch(cancelAdd()),
+  addLink: link => dispatch(addLink(link))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LinkFormContainer);

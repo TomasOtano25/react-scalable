@@ -5,7 +5,7 @@ import {
 } from "../containers/home/sagas";
 import { fetchLinksSaga, startAddSaga } from "../containers/linkList/sagas";
 import { doLoginSaga, cancelSaga } from "../containers/login/sagas";
-import { cancelAddSaga } from "../containers/linkForm/sagas";
+import { cancelAddSaga, addLinkSaga } from "../containers/linkForm/sagas";
 
 const sagas = [
   fetchTopicsSaga,
@@ -15,7 +15,8 @@ const sagas = [
   startAddSaga,
   doLoginSaga,
   cancelSaga,
-  cancelAddSaga
+  cancelAddSaga,
+  addLinkSaga
 ];
 
 export const initSagas = sagaMiddleware =>
