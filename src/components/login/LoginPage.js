@@ -1,14 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { withStyles } from "material-ui/styles";
-import { InputAdornment } from "material-ui/Input";
-import TextField from "material-ui/TextField";
 import Button from "material-ui/Button";
 import EmailIcon from "@material-ui/icons/Email";
 import LoginBackground from "../../loginBackground.jpeg";
 import classNames from "classnames";
+
+import TextInput from "../common/TextInput";
 
 const Background = styled.div`
   display: flex;
@@ -88,26 +87,19 @@ const LoginPage = ({
           </Button>
         </LoginButtons>
         <span>OR</span>
-        <form noValidate>
+        <form>
           <Input>
-            <TextField
-              error={errors.email ? true : false}
-              name="email"
+            <TextInput
+              error={errors.email}
               value={loginForm.email}
-              onChange={event => updateInput(event)}
-              className={classes.input}
+              name="email"
+              helperText={errors.email}
+              onChange={updateInput}
               label="Email"
-              helperText={errors.email ? errors.email : ""}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <EmailIcon />
-                  </InputAdornment>
-                )
-              }}
-            />
+            >
+              <EmailIcon />
+            </TextInput>
           </Input>
-          {/*errors.email !== null && <span>{errors.email}</span>*/}
           <Button
             variant="raised"
             color="primary"

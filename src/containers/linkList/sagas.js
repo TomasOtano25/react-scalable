@@ -1,5 +1,6 @@
 import types from "../../actions/actionType";
 import { put, call, takeLatest } from "redux-saga/effects";
+import { push } from "react-router-redux";
 import axios from "axios";
 import {
   requestLinkSucceded,
@@ -20,7 +21,7 @@ const fetchLinksFromServer = topicName => {
   });
 };
 
-export function* fetchLinks(action) {
+function* fetchLinks(action) {
   try {
     //console.log(action.topicName);
     const links = yield call(fetchLinksFromServer, action.topicName);
@@ -31,6 +32,16 @@ export function* fetchLinks(action) {
   }
 }
 
-export default function*() {
+function* startAdd(action) {
+  yield put(push(`/topics/${action.topicName}/add`));
+}
+
+export function* fetchLinksSaga() {
   yield takeLatest(types.REQUEST_LINKS, fetchLinks);
 }
+
+export function* startAddSaga() {
+  yield takeLatest(types.START_ADD, startAdd);
+}
+
+export default [fetchLinksSaga];

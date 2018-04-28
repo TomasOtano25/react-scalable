@@ -9,6 +9,7 @@ import Divider from "material-ui/Divider";
 import List, { ListItem, ListItemText } from "material-ui/List";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ButtonIcon from "./buttons/IconButton";
 
 const IconDiv = styled.div`
   display: flex;
@@ -37,6 +38,7 @@ const DrawerComponent = ({
       }}
     >
       <ListItemText primary={topic.name} />
+      <ButtonIcon />
     </ListItem>
   ));
 

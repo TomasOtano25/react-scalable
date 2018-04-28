@@ -5,6 +5,7 @@ import HomeContainer from "./containers/home/HomeContainer";
 
 import LinkListContainer from "./containers/linkList/LinkListContainer";
 import LoginContainer from "./containers/login/LoginContainer";
+import LinkFormContainer from "./containers/linkForm/LinkFormContainer";
 
 const Routes = () => {
   return (
@@ -17,9 +18,11 @@ const Routes = () => {
 };
 
 export const RoutesHome = () => {
-  return (
-    <Route exact path="/topics/:topicName" component={LinkListContainer} />
-  );
+  return <Route path="/topics/:topicName" component={LinkListContainer} />;
+};
+
+export const RoutesAddLink = () => {
+  return <Route path="/topics/:topicName/add" component={LinkFormContainer} />;
 };
 
 export default Routes;

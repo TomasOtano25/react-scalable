@@ -8,7 +8,8 @@ const actionTypes = {
   REQUEST_LINKS: "REQUEST_LINKS",
   TOOGLE_DRAWER: "TOOGLE_DRAWER",
   LOGIN: "LOGIN",
-  CANCEL_LOGIN: "CANCEL_LOGIN"
+  CANCEL_LOGIN: "CANCEL_LOGIN",
+  START_ADD: "START_ADD"
 };
 
 export default actionTypes;

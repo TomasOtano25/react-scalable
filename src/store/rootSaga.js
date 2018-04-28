@@ -3,14 +3,15 @@ import {
   selectTopicsSaga,
   selectDefaultTopicSaga
 } from "../containers/home/sagas";
-import linkListSagas from "../containers/linkList/sagas";
+import { fetchLinksSaga, startAddSaga } from "../containers/linkList/sagas";
 import { doLoginSaga, cancelSaga } from "../containers/login/sagas";
 
 const sagas = [
   fetchTopicsSaga,
   selectTopicsSaga,
   selectDefaultTopicSaga,
-  linkListSagas,
+  fetchLinksSaga,
+  startAddSaga,
   doLoginSaga,
   cancelSaga
 ];

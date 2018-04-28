@@ -11,3 +11,7 @@ export const requestLinkFailed = message => {
 export const requestLinks = topicName => {
   return { type: types.REQUEST_LINKS, topicName };
 };
+
+export const startAdd = topicName => {
+  return { type: types.START_ADD, topicName };
+};
